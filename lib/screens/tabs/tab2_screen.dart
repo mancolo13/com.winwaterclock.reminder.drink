@@ -1,78 +1,53 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
-import '../../services/routing_service.dart';
 
-class Tab2Screen extends StatefulWidget {
+
+class Tab2Screen extends StatelessWidget {
   const Tab2Screen({super.key});
 
   @override
-  State<Tab2Screen> createState() => _Tab2ScreenState();
-}
-
-class _Tab2ScreenState extends State<Tab2Screen> {
-  int _idx = 0;
-
-  @override
   Widget build(BuildContext context) {
+    final timeline = [
+      {'time': '08:15 AM', 'vol': '350 ml', 'bev': 'Mineral Water'},
+      {'time': '10:45 AM', 'vol': '250 ml', 'bev': 'Green Tea'},
+      {'time': '01:30 PM', 'vol': '500 ml', 'bev': 'Pure Water'},
+      {'time': '04:15 PM', 'vol': '400 ml', 'bev': 'Electrolyte Mix'},
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Win • Schedule'),
-      ),
-      body: ListView(
+      appBar: AppBar(title: const Text('Win • Drink Timeline')),
+      body: ListView.builder(
         padding: const EdgeInsets.all(16),
-        children: [
-          SegmentedButton<int>(
-            segments: const [
-              ButtonSegment(value: 0, label: Text('Overview')),
-              ButtonSegment(value: 1, label: Text('Details')),
-              ButtonSegment(value: 2, label: Text('History')),
-            ],
-            selected: {_idx},
-            onSelectionChanged: (s) => setState(() => _idx = s.first),
-          ),
-          const SizedBox(height: 20),
-          ...List.generate(5, (i) => Card(
-            color: AppTheme.surfaceColor,
-            margin: const EdgeInsets.only(bottom: 12),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Schedule Item #${i + 101}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: AppTheme.primaryColor.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text('READY', style: TextStyle(color: AppTheme.primaryColor, fontSize: 11, fontWeight: FontWeight.bold)),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text('Comprehensive telemetry data and analytical performance metrics for item #${i + 1}.', style: const TextStyle(color: Colors.white70, fontSize: 13)),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton.icon(
-                        icon: const Icon(Icons.bolt, size: 16),
-                        label: const Text('Execute'),
-                        onPressed: () => RoutingService.openRegistrationUrl(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+        itemCount: timeline.length,
+        itemBuilder: (context, i) {
+          final t = timeline[i];
+          return Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(color: AppTheme.surfaceColor, borderRadius: BorderRadius.circular(14)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.water_drop, color: AppTheme.primaryColor),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(t['bev']!, style: const TextStyle(fontWeight: FontWeight.bold)),
+                        Text(t['time']!, style: const TextStyle(color: Colors.white60, fontSize: 12)),
+                      ],
+                    ),
+                  ],
+                ),
+                Text(t['vol']!, style: const TextStyle(fontWeight: FontWeight.bold, color: AppTheme.secondaryColor, fontSize: 15)),
+              ],
             ),
-          )),
-        ],
+          );
+        },
       ),
     );
   }
 }
+

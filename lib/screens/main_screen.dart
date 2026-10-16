@@ -32,27 +32,26 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: AppTheme.surfaceColor,
         indicatorColor: AppTheme.primaryColor.withValues(alpha: 0.2),
         destinations: [
-        NavigationDestination(
-          icon: const Icon(Icons.water_drop_outlined),
-          selectedIcon: const Icon(Icons.water_drop, color: AppTheme.primaryColor),
-          label: 'Intake',
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.alarm_outlined),
-          selectedIcon: const Icon(Icons.alarm, color: AppTheme.primaryColor),
-          label: 'Schedule',
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.view_list_outlined),
-          selectedIcon: const Icon(Icons.view_list, color: AppTheme.primaryColor),
-          label: 'Log',
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.show_chart_outlined),
-          selectedIcon: const Icon(Icons.show_chart, color: AppTheme.primaryColor),
-          label: 'Trends',
-        ),
-
+          NavigationDestination(
+            icon: const Icon(Icons.water_drop_outlined),
+            selectedIcon: const Icon(Icons.water_drop, color: AppTheme.primaryColor),
+            label: 'Drink',
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.timeline_outlined),
+            selectedIcon: const Icon(Icons.timeline, color: AppTheme.primaryColor),
+            label: 'Timeline',
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.local_cafe_outlined),
+            selectedIcon: const Icon(Icons.local_cafe, color: AppTheme.primaryColor),
+            label: 'Beverages',
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.alarm_outlined),
+            selectedIcon: const Icon(Icons.alarm, color: AppTheme.primaryColor),
+            label: 'Reminders',
+          ),
         ],
       ),
     );
