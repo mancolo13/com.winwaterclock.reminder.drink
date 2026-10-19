@@ -83,7 +83,7 @@ class _Tab1ScreenState extends State<Tab1Screen> {
           ),
           const SizedBox(height: 16),
           _infoTile('Remaining to target', '${_target - _intake} ml needed today'),
-          _infoTile('Hydration Streak', '14 consecutive days goal met 🔥'),
+          _infoTile('Hydration Streak', '14 days goal met 🔥'),
         ],
       ),
     );
@@ -109,7 +109,8 @@ class _Tab1ScreenState extends State<Tab1Screen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(t, style: const TextStyle(color: Colors.white70)),
+          Expanded(child: Text(t, style: const TextStyle(color: Colors.white70), maxLines: 1, overflow: TextOverflow.ellipsis)),
+          const SizedBox(width: 8),
           Text(v, style: const TextStyle(fontWeight: FontWeight.bold, color: AppTheme.secondaryColor)),
         ],
       ),
